@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-NUM_TRIALS = 1000
+NUM_TRIALS = 10000
 EPS = 0
 BANDITS_PROB = [0.2, 0.5, 0.75]
 np.random.seed(42)
@@ -42,7 +42,10 @@ def experiment():
     print("overall win rate:", rewards.sum() / NUM_TRIALS)
     print("num_times_explored:", num_times_explored)
     print("num_times_exploited:", num_times_exploited)
-    print("num times selected optimal bandit:", num_optimal)
+    print("num times selected optimal bandit:", [
+        b.N
+        for b in bandits
+    ])
 
     cumulative_reward = np.cumsum(rewards)
     win_rate = cumulative_reward / (np.arange(NUM_TRIALS) + 1)
